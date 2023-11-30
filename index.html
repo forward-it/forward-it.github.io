@@ -48,7 +48,7 @@
 		viewer.setPointBudget(1_000_000);
 		viewer.loadSettingsFromURL();
 		
-		viewer.setDescription('3D DIGITAL TWIN');
+		//viewer.setDescription('3D DIGITAL TWIN');
 		
 		viewer.loadGUI(() => {
 			viewer.setLanguage('en');
@@ -64,7 +64,8 @@
 	        material.size = 1;
 	        material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
 	        material.shape = Potree.PointShape.CIRCLE;
-			pointcloud.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), Math.PI);
+
+			pointcloud.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), Math.PI * 0.5);
 
 	        scene.addPointCloud(pointcloud);
 
