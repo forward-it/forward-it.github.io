@@ -48,28 +48,27 @@
 		viewer.setPointBudget(1_000_000);
 		viewer.loadSettingsFromURL();
 		
-		viewer.setDescription('Point cloud courtesy of <a href="http://pix4d.com/" target="_blank">Pix4D</a> (274M points)');
+		viewer.setDescription('3D Digital Twin Demo');
 		
 		viewer.loadGUI(() => {
 			viewer.setLanguage('en');
 			$("#menu_tools").next().show();
-			//viewer.toggleSidebar();
 		});
 		
 		// Load and add point cloud to scene
-		Potree.loadPointCloud("./pointclouds/woodlog/cloud.js", "Matterhorn", function(e){
-			let scene = viewer.scene;
-			let pointcloud = e.pointcloud;
-			
-			let material = pointcloud.material;
-			material.size = 1;
-			material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-			material.shape = Potree.PointShape.SQUARE;
-			
-			scene.addPointCloud(pointcloud);
-			
-			scene.view.position.set(4316.88, 3624.74, 2461.80);
-			scene.view.lookAt(new THREE.Vector3(-697.02, -966.12, -631.41));
+		Potree.loadPointCloud("./pointclouds/woodlog/cloud.js", "Woodlog Truck Digital Twin", e => {
+	        const scene = viewer.scene;
+	        const pointcloud = e.pointcloud;
+
+	        const material = pointcloud.material;
+	        material.size = 1;
+	        material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+	        material.shape = Potree.PointShape.CIRCLE;
+	        pointcloud.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), 0.5 * Math.PI);
+
+	        scene.addPointCloud(pointcloud);
+
+	        viewer.fitToScreen();
 		});
 		
 	</script>
